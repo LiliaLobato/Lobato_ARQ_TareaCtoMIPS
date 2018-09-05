@@ -44,7 +44,5 @@ multiplica:
 	add $s3,$zero,$zero
 	mul $s3, $s1, $s2
 	jr $ra 			#Returning to Switch Case
-
-
 exit:
 
