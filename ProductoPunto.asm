@@ -16,8 +16,19 @@
 	
 	#For
 for:	
-	#instruciones
+	jal ProductFunction
+	add $s5, $s5,$s6
+	add $s6, $zero, $zero
 	addi $s4,$s4, 0x1	#Aumento en variable i por ciclo
-	bne $s4, 0x8, for	#salto for
+	bne $s4, 0x9, for	#salto for
+	j exit
+	
+ProductFunction:
+	lw $t0, ($s1) # Loading data from memory
+	lw $t1, ($s2) # Loading data from memory
+	mul $s6, $t0, $t1
+	addi $s1, $s1, 4
+	addi $s2, $s2, 4
+	jr $ra 			#Returning to Switch Case
 
 exit:
