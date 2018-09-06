@@ -5,8 +5,8 @@
 .text
 	#Carga Valores
 	add $s0,$zero,$zero 	#Selector
-	addi $s1,$s1,0x5	#a
-	addi $s2,$s2,0x3	#b
+	add $s1,$s1,0x5	#a
+	add $s2,$s2,0x3	#b
 	add $s3,$s3,$zero	#c
 	
 	beq $s0, 0x1, case1 	#Case 1
