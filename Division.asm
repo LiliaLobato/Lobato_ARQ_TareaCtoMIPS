@@ -4,8 +4,10 @@
 .text
 Main:
 	#Variables
-	add  $s0, $s0, 10	# s0 -> a
-	add  $s1, $s1, 4	# s1 -> b
+	and  $s0, $s0, $zero
+	ori  $s0, $s0, 10	# s0 -> a
+	and  $s1, $s1, $zero
+	ori  $s1, $s1, 4	# s1 -> b
 	add  $s2, $zero, $zero	# s2 -> result
 	add  $s3, $zero, $zero	# s3 -> i
 	

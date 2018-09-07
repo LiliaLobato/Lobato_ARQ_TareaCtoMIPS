@@ -7,8 +7,10 @@
 	Vector2: .word -1 2 -3 4 -5 6 -7 8 -9    # Vector2
 .text
 	# Almacena la direccion de cada Arreglo
-	la $s1, Vector1
-	la $s2, Vector2
+	lui $at, 0x00001001	 # Vector 1, inicia en 0hex termina en 20hex
+	ori $s1, $at, 0x00000000
+	lui $at, 0x00001001	 # Vector 2, inicia en 24hex termina en 44hex
+	ori $s2, $at, 0x00000024
 	
 	#Carga Valores
 	add $s4,$zero,$zero	#i

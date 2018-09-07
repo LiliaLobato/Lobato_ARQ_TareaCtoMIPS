@@ -3,15 +3,17 @@
 
 .text
 Main:
-	add  $s0, $s0, 6	# s0 -> n
-	add  $s1, $s1, 6	# s1 -> m
+	and $s0, $s0, $zero 
+	ori $s0, $s0, 6		# s0 -> n
+	and $s1, $s1, $zero 
+	ori $s1, $s1, 6		# s1 -> m
 	add  $s3, $zero, $zero	# s3 -> resultado
 	jal Potencia 		# Calling procedure
 	j Exit			
 			
 Potencia:
 	bne $s0, $zero, continue# if n < 1
-	add $s3, $s3, 1 	# return potencia 1
+	ori $s3, $s3, 1 	# return potencia 1
 	j Exit
 	
 continue:
@@ -23,7 +25,7 @@ else:
 	j Loop
 Loop:	
 	#Guardado de retorno
-	addi $sp, $sp,-8 	# Decreasing the stack pointer for 2 values
+	add $sp, $sp,-8 	# Decreasing the stack pointer for 2 values
 	sw $ra 4($sp) 		# Storing n
 	sw $s0, 0($sp) 		# Storing the resturn address
 	
@@ -34,7 +36,7 @@ Loop:
 	#Regresando valores de retorno
 	lw $s0, 0($sp) 		# Loading values from stak
 	lw $ra, 4($sp) 		# Loading values from stak
-	addi $sp, $sp, 8 	# Increasing stack pointer
+	add $sp, $sp, 8 	# Increasing stack pointer
 	
 	mul $s3, $s3, $s1	#resultado = resultado*m
 	

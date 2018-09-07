@@ -4,10 +4,12 @@
 
 .text
 	#Carga Valores
-	add $s0,$zero,$zero 	#Selector
-	add $s1,$s1,0x5	#a
-	add $s2,$s2,0x3	#b
-	add $s3,$s3,$zero	#c
+	add $s0, $zero, $zero	#Selector
+	and $s1, $s1, $zero
+	ori $s1, $s1, 5		#a
+	and $s2,$s2,$zero
+	ori $s2,$s2, 3		#b
+	add $s3,$zero,$zero	#c
 	
 	beq $s0, 0x1, case1 	#Case 1
 	beq $s0, 0x2, case2 	#Case 2
