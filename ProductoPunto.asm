@@ -19,7 +19,7 @@ for:
 	jal ProductFunction
 	add $s5, $s5,$s6	#Se suman las multiplicaciones
 	add $s6, $zero, $zero	#se limpia la variable de la multiplicacion
-	addi $s4,$s4, 0x1	#Aumento en variable i por ciclo
+	add $s4,$s4, 0x1	#Aumento en variable i por ciclo
 	bne $s4, 0x9, for	#salto for
 	j exit
 	

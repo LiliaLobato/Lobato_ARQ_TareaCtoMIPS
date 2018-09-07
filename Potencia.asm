@@ -3,24 +3,43 @@
 
 .text
 Main:
-	jal Potencia 	# Calling procedure
-	j Exit		# Jump to Main label
-	
+	add  $s0, $s0, 6	# s1 -> n
+	add  $s1, $s1, 6	# s2 -> m
+	add  $s3, $zero, $zero	# s3 -> resultado
+	jal Potencia 		# Calling procedure
+	j Exit			
+			
 Potencia:
-	slti $t0, $a0, 1 	# if n < 1
-	beq $t0, $zero, Loop 	# Branch to Loop
-	addi $v0, $zero, 1 	# return 1
-	jr $ra 			# Return to the caller	
+	bne $s0, $zero, continue# if n < 1
+	add $s3, $s3, 1 	# return potencia 1
+	j Exit 			# Return to the caller	
+	
+continue:
+	slti $t0, $s0, 2	#t0 indica si n ya llegó a 0 (to = 0, s0/=0)
+	beq $t0, $zero, else	#si t0 aun no es cero, continua
+	mul $s3, $s1, 1		#t0=1, resultado = m*1
+	jr $ra
+else:
+	j Loop
 Loop:	
 	#Guardado de retorno
 	addi $sp, $sp,-8 	# Decreasing the stack pointer for 2 values
 	sw $ra 4($sp) 		# Storing n
-	sw $a0, 0($sp) 		# Storing the resturn address
+	sw $s0, 0($sp) 		# Storing the resturn address
 	
-	jal Factorial		# recursive function
-	lw $a0, 0($sp) 		# Loading values from stak
+	#Recursividad
+	add $s0, $s0, -1 	# Decreasing n
+	jal Potencia		# recursive function
+	
+	#Regresando valores de retorno
+	lw $s0, 0($sp) 		# Loading values from stak
 	lw $ra, 4($sp) 		# Loading values from stak
 	addi $sp, $sp, 8 	# Increasing stack pointer
+	
+	mul $s3, $s3, $s1	#resultado = resultado*m
+	
+	#potencia
 	jr $ra  		# Return to the caller
+
 Exit:
 	
