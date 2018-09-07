@@ -12,7 +12,7 @@ Main:
 Potencia:
 	bne $s0, $zero, continue# if n < 1
 	add $s3, $s3, 1 	# return potencia 1
-	j Exit 			# Return to the caller	
+	j Exit
 	
 continue:
 	slti $t0, $s0, 2	#t0 indica si n ya llegó a 0 (to = 0, s0/=0)

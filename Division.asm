@@ -28,7 +28,7 @@ Loop:
 	sw $s0, 0($sp) 		# Storing the resturn address
 	
 	#Recursividad
-	
+	sub $s0, $s0, $s1 	# a = a - b
 	jal division		# recursive function
 	
 	#Regresando valores de retorno
@@ -36,7 +36,7 @@ Loop:
 	lw $ra, 4($sp) 		# Loading values from stak
 	addi $sp, $sp, 8 	# Increasing stack pointer
 	
-	
+	addi $s3, $s3, 01 	# return division (a - b, b) + 1
 	
 	#potencia
 	jr $ra  		# Return to the caller
