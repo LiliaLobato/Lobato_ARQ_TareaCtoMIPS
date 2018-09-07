@@ -3,8 +3,8 @@
 
 .text
 Main:
-	add  $s0, $s0, 6	# s1 -> n
-	add  $s1, $s1, 6	# s2 -> m
+	add  $s0, $s0, 6	# s0 -> n
+	add  $s1, $s1, 6	# s1 -> m
 	add  $s3, $zero, $zero	# s3 -> resultado
 	jal Potencia 		# Calling procedure
 	j Exit			
